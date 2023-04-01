@@ -1,5 +1,5 @@
 # Simple_crud_api
-A simple CRUD API website made with PHP by Nicke Lim
+A simple CRUD API website made with PHP by Nickey Lim
 
 1. Download all files.
 2. Put all files in a folder located in your htdocs folder under xampp folder.
@@ -8,4 +8,4 @@ A simple CRUD API website made with PHP by Nicke Lim
 
 Reminders:
 1. This is done through a localhost connection only, database password is not required.
-2. Make sure xampp is installed and apeche and mysql is started.
+2. Make sure xampp is installed and apache and mysql is started.
