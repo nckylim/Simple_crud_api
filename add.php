@@ -23,26 +23,32 @@ if (isset($_POST['submit'])) {
     $n_pass = $_POST['n_pass'];
     $c_pass = $_POST['c_pass'];
 
-    //Check password and confirmed password
-    if ($n_pass === $c_pass) {
+    $un_exist = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user where Email=$email"));
 
-        $sql_u = "INSERT INTO user VALUES ('$u_id', '$r_id', '$f_name', '$l_name', '$email', '$c_pass', '$role', '$desc', 'user')";
-        $sql_r = "INSERT INTO role VALUES ('$r_id', '$u_id', '$role', '$desc')";
-        $sql_l = "INSERT INTO login VALUES ('$id', '$email', '$c_pass', 'user')";
+    //Check if email already exist
+    if ($un_exist['Email'] === $email) {
+        $_SESSION['message'] = "Email already in use. Please use a different one.";
+        header('location: create.php');
+    } else {
+        //Check password and confirmed password
+        if ($n_pass === $c_pass) {
 
-        if (mysqli_query($conn, $sql_u)) {
-            if (mysqli_query($conn, $sql_r)) {
-                if (mysqli_query($conn, $sql_l)) {
-                    $_SESSION['message'] = "New user added.";
-                    header('location: admin_homepage.php');
-                    //echo '<script>alert("New user added."); window.location = "admin_homepage.php";</script>';
+            $sql_u = "INSERT INTO user VALUES ('$u_id', '$r_id', '$f_name', '$l_name', '$email', '$c_pass', '$role', '$desc', 'user')";
+            $sql_r = "INSERT INTO role VALUES ('$r_id', '$u_id', '$role', '$desc')";
+            $sql_l = "INSERT INTO login VALUES ('$id', '$email', '$c_pass', 'user')";
+
+            if (mysqli_query($conn, $sql_u)) {
+                if (mysqli_query($conn, $sql_r)) {
+                    if (mysqli_query($conn, $sql_l)) {
+                        $_SESSION['message'] = "New user added.";
+                        header('location: admin_homepage.php');
+                    }
                 }
             }
+        } else {
+            $_SESSION['message'] = "Password is not the same.";
+            header('location: create.php');
         }
-    } else {
-        $_SESSION['message'] = "Password is not the same.";
-        header('location: create.php');
-        // echo '<script>alert("Password is not the same."); window.location = "admin_homepage.php";</script>';
     }
 }
 ?>

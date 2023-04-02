@@ -3,21 +3,21 @@ $err = $emailerr = $passerr = "";
 session_start();
 include "conn.php";
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
 
 
-    $account = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM login WHERE email='$email' LIMIT 1"));
+    $account = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM login WHERE email='$email'"));
 
     if (isset($_POST['submit'])) {
 
       //Validate if username/password is present
       if (!empty($_POST['email']) && !empty($_POST['pass'])) {
-        if (is_null($account)) {
-          $emailerr = "Incorrect Username";
-        } else {
+        if (!empty($account['email'])) {
           if ($account['password'] === $pass) {
             //Check if one who is trying to login is an admin or user
             $id = $account['id'];
@@ -33,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           } else {
             $passerr = "Incorrect Password";
           }
+        } else {
+          $emailerr = "Incorrect Username";
         }
       }
     }
@@ -69,10 +71,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <div class="input-box">
-        <input type="password" placeholder="Enter Your Password" name="pass" minlength="8" required>
-        <div class="underline"></div>
+        <input type="password" placeholder="Enter Your Password" name="pass" minlength="8" id="pswrd" required>
+        <div class="underline"></div><br>
+        <table>
+          <tr>
+            <td><input type="checkbox" id="show" onclick="toggleVisibility()" style="width: 20px;"></td>
+            <td><label for="show">Show Password</label></td>
+          </tr>
+        </table>
         <span style="color:red; font-size:12px;"><?php echo $passerr; ?></span>
       </div>
+
+
+
+      <br><br>
 
       <div class="input-box button">
         <input type="submit" name="submit" value="Continue">
@@ -80,8 +92,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
   </div>
 
-
-  <br><br><br>
 
 
   <footer>
@@ -91,6 +101,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Copyright -->
   </footer>
 
+  <!-- PASSWORD TOGGLE VISIBILITY -->
+  <script>
+    function toggleVisibility() {
+      var getPasword = document.getElementById("pswrd");
+      if (getPasword.type === "password") {
+        getPasword.type = "text";
+      } else {
+        getPasword.type = "password";
+      }
+    }
+  </script>
 
 </body>
 

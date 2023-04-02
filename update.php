@@ -39,14 +39,21 @@ if (isset($_POST['submit'])) {
     }
 
     if (!empty($_POST['email'])) {
-        $query = "UPDATE user SET Email='$email 'WHERE u_id='$zz'";
-        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $query = "UPDATE login SET email='$email' WHERE id='$zz'";
-        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        //Check if email already exist
+        if ($un_exist['Email'] === $email) {
+            $_SESSION['message'] = "Email already in use. Please use a different one.";
+            header('location: create.php');
+        } else {
+            $query = "UPDATE user SET Email='$email 'WHERE u_id='$zz'";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $_SESSION['message'] = "User updated successfully.";
-        header('location: admin_homepage.php');
+            $query = "UPDATE login SET email='$email' WHERE id='$zz'";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+            $_SESSION['message'] = "User updated successfully.";
+            header('location: admin_homepage.php');
+        }
     }
 
     if (!empty($_POST['role'])) {

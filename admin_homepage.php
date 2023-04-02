@@ -1,7 +1,7 @@
 <?php
 session_start();
+$type = $_SESSION["type"];
 include 'conn.php';
-//include 'create.php';
 $sessionId = $_SESSION["u_id"];
 $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id = $sessionId"));
 $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = $sessionId"));
@@ -89,20 +89,20 @@ $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = 
   <!-- Create New User link -->
   <a href="create.php" class="btn btn-primary ml-3">Create New User</a>
 
-  <br><br>
   <!-- SHOW ERROR -->
   <?php
   if (isset($_SESSION['message'])) : ?>
-    <div class="alert alert-success" role="alert" style="width: 80%; margin:auto;">
-      <br>
-      <?php
-      echo $_SESSION['message'];
-      unset($_SESSION['message']);
-      ?>
+    <div class="alert alert-success" role="alert" style="width: 80%; font-size: 14px;">
+      <p>
+        <?php
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        ?></p>
     </div>
 
   <?php endif ?>
   <br><br>
+
   <?php $results = mysqli_query($conn, "SELECT * FROM user"); ?>
 
   <table id="myTable" class="table bg-light" style="width: 80%;">

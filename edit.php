@@ -50,18 +50,17 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
         <form method="post" action="update.php">
             <input type="hidden" name="id" value="<?php echo $zz; ?>" />
             <h4 style="text-align:center;">Edit User Information</h4>
-            <p style="text-align:center;">Please enter information of new user.</p>
+            <p style="text-align:center;">Please enter information of the user.</p>
             <hr><br>
 
             <?php
-            // session_start();
             if (isset($_SESSION['message'])) : ?>
-                <div class="alert alert-danger" role="alert" style="width: 80%; margin:auto;">
-                    <br>
-                    <?php
-                    echo $_SESSION['message'];
-                    unset($_SESSION['message']);
-                    ?>
+                <div class="alert alert-danger" role="alert" style="width: 80%; font-size: 14px;">
+                    <p>
+                        <?php
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                        ?></p>
                 </div>
 
             <?php endif ?>
@@ -100,17 +99,25 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
 
                     <tr>
                         <td><label>Enter Current Password</label></td>
-                        <td><input type="password" name="cur_pass" value="<?php echo $admin['c_pass'] ?>" minlength="8" required></td>
+                        <td><input type="password" name="cur_pass" value="<?php echo $admin['c_pass'] ?>" id="pswrd" minlength="8" required></td>
                     </tr>
 
                     <tr>
                         <td><label>Enter New Password</label></td>
-                        <td><input type="password" name="n_pass" value="" minlength="8"></td>
+                        <td><input type="password" name="n_pass" value="" id="pswrd1" minlength="8"></td>
                     </tr>
 
                     <tr>
                         <td><label>Confirm Password</label></td>
-                        <td><input type="password" name="c_pass" value="" minlength="8"></td>
+                        <td><input type="password" name="c_pass" value="" id="pswrd2" minlength="8"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="checkbox" id="show" onclick="toggleVisibility()" style="width: 20px;">
+                            <label for="show">Show Password</label>
+                        </td>
                     </tr>
 
                 </table>
@@ -124,6 +131,23 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
         </center>
     </div>
 
+    <!-- PASSWORD TOGGLE VISIBILITY -->
+    <script>
+        function toggleVisibility() {
+            var getPasword = document.getElementById("pswrd");
+            var getPasword1 = document.getElementById("pswrd1");
+            var getPasword2 = document.getElementById("pswrd2");
+            if (getPasword.type === "password" || getPasword1.type === "password" || getPasword2.type === "password") {
+                getPasword.type = "text";
+                getPasword1.type = "text";
+                getPasword2.type = "text";
+            } else {
+                getPasword.type = "password";
+                getPasword1.type = "password";
+                getPasword2.type = "password";
+            }
+        }
+    </script>
 
 
 </body>
