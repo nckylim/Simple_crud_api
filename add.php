@@ -23,10 +23,10 @@ if (isset($_POST['submit'])) {
     $n_pass = $_POST['n_pass'];
     $c_pass = $_POST['c_pass'];
 
-    $un_exist = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user where Email=$email"));
-
-    //Check if email already exist
-    if ($un_exist['Email'] === $email) {
+    // check username from database
+    $select = "SELECT Email FROM user WHERE Email='$email'";
+    $result = $conn->query($select);
+    if ($result->num_rows > 0) {
         $_SESSION['message'] = "Email already in use. Please use a different one.";
         header('location: create.php');
     } else {

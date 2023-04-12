@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "conn.php";
+$type = $_SESSION["type"];
 $sessionId = $_SESSION["u_id"];
 $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id = $sessionId"));
 
@@ -26,16 +27,27 @@ if (isset($_POST['submit'])) {
         $query = "UPDATE user SET first_name='$fname' WHERE u_id='$zz'";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $_SESSION['message'] = "Profile updated successfully.";
-        header('location: user_homepage.php');
+        if ($type === 'admin') {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: admin_homepage.php');
+        } else {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: user_homepage.php');
+        }
     }
+
 
     if (!empty($_POST['l_name'])) {
         $query = "UPDATE user SET last_name='$lname' WHERE u_id='$zz'";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $_SESSION['message'] = "Profile updated successfully.";
-        header('location: user_homepage.php');
+        if ($type === 'admin') {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: admin_homepage.php');
+        } else {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: user_homepage.php');
+        }
     }
 
     if (!empty($_POST['email'])) {
@@ -51,8 +63,13 @@ if (isset($_POST['submit'])) {
             $query = "UPDATE login SET email='$email' WHERE id='$zz'";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-            $_SESSION['message'] = "Profile updated successfully.";
-            header('location: admin_homepage.php');
+            if ($type === 'admin') {
+                $_SESSION['acc_mess'] = "Profile updated successfully.";
+                header('location: admin_homepage.php');
+            } else {
+                $_SESSION['acc_mess'] = "Profile updated successfully.";
+                header('location: user_homepage.php');
+            }
         }
     }
 
@@ -63,8 +80,13 @@ if (isset($_POST['submit'])) {
         $query = "UPDATE role SET role='$role' WHERE r_id='$zz'";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $_SESSION['message'] = "Profile updated successfully.";
-        header('location: user_homepage.php');
+        if ($type === 'admin') {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: admin_homepage.php');
+        } else {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: user_homepage.php');
+        }
     }
 
     if (!empty($_POST['desc'])) {
@@ -74,8 +96,13 @@ if (isset($_POST['submit'])) {
         $query = "UPDATE role SET description='$desc' WHERE r_id='$zz'";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-        $_SESSION['message'] = "Profile updated successfully.";
-        header('location: user_homepage.php');
+        if ($type === 'admin') {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: admin_homepage.php');
+        } else {
+            $_SESSION['acc_mess'] = "Profile updated successfully.";
+            header('location: user_homepage.php');
+        }
     }
 
     if (!empty($_POST['n_pass'])) {
@@ -92,8 +119,13 @@ if (isset($_POST['submit'])) {
                 $query = "UPDATE login SET password='$c_pass' WHERE id='$zz'";
                 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-                $_SESSION['message'] = "Profile updated successfully.";
-                header('location: user_homepage.php');
+                if ($type === 'admin') {
+                    $_SESSION['acc_mess'] = "Profile updated successfully.";
+                    header('location: admin_homepage.php');
+                } else {
+                    $_SESSION['acc_mess'] = "Profile updated successfully.";
+                    header('location: user_homepage.php');
+                }
             } else {
                 $_SESSION['message'] = "Please confirm you password again.";
                 header('location: edit_details.php');

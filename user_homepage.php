@@ -47,22 +47,22 @@ $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = 
     <!-- INFORMATIONS -->
     <div class="greeting">
         <br><br>
-        <h1>Hi, <?php echo $admin['first_name'] . " " . $admin['last_name']; ?>.</h1><br><br>
+        <h1>Hi, <?php echo $admin['first_name'] . " " . $admin['last_name']; ?>.</h1>
     </div>
-    <hr>
 
-    <!-- SHOW ERROR -->
+    <!-- SHOW ACCOUNT ERROR -->
     <?php
-    if (isset($_SESSION['message'])) : ?>
+    if (isset($_SESSION['acc_mess'])) : ?>
+        <br>
         <div class="alert alert-success" role="alert" style="width: 80%; font-size: 14px;">
-            <p>
-                <?php
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-                ?></p>
+            <?php
+            echo $_SESSION['acc_mess'];
+            unset($_SESSION['acc_mess']);
+            ?>
         </div>
 
     <?php endif ?>
+    <br>
 
     <div class="container" style="max-width:40%;">
         <h5>Account Details</h5><br><br>

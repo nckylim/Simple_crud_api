@@ -47,9 +47,23 @@ $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = 
   <!-- INFORMATIONS -->
   <div class="greeting">
     <br><br>
-    <h1>Hi, <?php echo $admin['first_name'] . " " . $admin['last_name']; ?>.</h1><br><br>
+    <h1>Hi, <?php echo $admin['first_name'] . " " . $admin['last_name']; ?>.</h1>
   </div>
-  <hr>
+
+
+  <!-- SHOW ACCOUNT ERROR -->
+  <?php
+  if (isset($_SESSION['acc_mess'])) : ?>
+    <br>
+    <div class="alert alert-success" role="alert" style="width: 80%; font-size: 14px;">
+      <?php
+      echo $_SESSION['acc_mess'];
+      unset($_SESSION['acc_mess']);
+      ?>
+    </div>
+
+  <?php endif ?>
+  <br>
 
 
 
@@ -80,7 +94,7 @@ $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = 
 
     <hr>
     <p>
-      <a href="edit_details.php" class="btn btn-info">Edit Details</a>
+      <a href="edit_details.php" class="btn btn-primary">Edit Details</a>
       <a href="logout.php" class="btn btn-danger ml-3">Logout</a>
     </p>
   </div>
@@ -89,21 +103,21 @@ $role = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM role WHERE u_id = 
   <!-- Create New User link -->
   <a href="create.php" class="btn btn-primary ml-3">Create New User</a>
 
-  <!-- SHOW ERROR -->
+  <!-- SHOW USER ERROR -->
   <?php
   if (isset($_SESSION['message'])) : ?>
+    <br>
     <div class="alert alert-success" role="alert" style="width: 80%; font-size: 14px;">
-      <p>
-        <?php
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-        ?></p>
+      <?php
+      echo $_SESSION['message'];
+      unset($_SESSION['message']);
+      ?>
     </div>
 
   <?php endif ?>
-  <br><br>
+  <br>
 
-  <?php $results = mysqli_query($conn, "SELECT * FROM user"); ?>
+  <?php $results = mysqli_query($conn, "SELECT * FROM user where not u_id=1"); ?>
 
   <table id="myTable" class="table bg-light" style="width: 80%;">
     <tr style="background-color: #6699cc; color:white;">

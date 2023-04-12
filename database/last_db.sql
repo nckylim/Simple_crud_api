@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 09:32 PM
+-- Generation Time: Apr 12, 2023 at 01:03 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,14 +39,14 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `email`, `password`, `type`) VALUES
-(1, 'larrysmith@gmail.com', 'popcornsss', 'admin'),
-(4, 'nickeylim@gmail.com', 'frenchfries', 'user'),
-(5, 'sherrydc@gmail.com', 'bankbank', 'user'),
+(1, 'larrysmith@gmail.com', 'pancakes', 'admin'),
+(4, 'nd.lim03@gmail.com', 'friedchicken', 'user'),
+(5, 'sherryantonio@gmail.com', 'bankbank', 'user'),
 (6, 'luiszamora@gmail.com', 'vroomvroom', 'user'),
-(7, 'nicolelim@gmail.com', 'avocadosss', 'user'),
-(9, 'jdelacruz@gmail.com', 'matchalatte', 'user'),
-(10, 'racquellim@gmail.com', 'applebees', 'user'),
-(11, 'nclim@gmail.com', 'bukopieee', 'user');
+(7, 'markhollister@gmail.com', 'zebracodes', 'user'),
+(9, 'mariadelacruz@gmail.com', 'matchalatte', 'user'),
+(10, 'racquelsantos@gmail.com', 'applebees', 'user'),
+(11, 'nakiagonzales@gmail.com', 'blacktiger', 'user');
 
 -- --------------------------------------------------------
 
@@ -66,14 +66,14 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`r_id`, `u_id`, `role`, `description`) VALUES
-(1, 1, 'IT Head', 'Head of the IT Department'),
-(4, 4, 'Intern', 'Intern in the company        '),
+(1, 1, 'IT Head', 'Head of the IT Department        '),
+(4, 4, 'Intern', 'Intern in the company            '),
 (5, 5, 'Accountant', 'Employee in finance'),
 (6, 6, 'Employee', 'Employee in marketing'),
-(7, 7, 'Intern', 'Intern in the company'),
+(7, 7, 'Developer', 'Developer in the IT Department   '),
 (9, 9, 'Assistant Manager', 'Employee from Accounting department'),
 (10, 10, 'Assistant Manager', 'Assistant manager in Marketing Department'),
-(11, 11, 'Manager', 'Business Development Manager');
+(11, 11, 'Developer', 'Developer in the IT Department   ');
 
 -- --------------------------------------------------------
 
@@ -98,14 +98,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`u_id`, `r_id`, `first_name`, `last_name`, `Email`, `c_pass`, `role`, `description`, `type`) VALUES
-(1, 1, 'Larry', 'Smith', 'larrysmith@gmail.com ', 'popcornsss', 'IT Head', 'Head of the IT Department ', 'admin'),
-(4, 4, 'Nickey', 'Lim', 'nickeylim@gmail.com ', 'frenchfries', 'Intern', 'Intern in the company         ', 'user'),
-(5, 5, 'Sherry', 'Dela Cruz', 'sherrydc@gmail.com', 'bankbank', 'Accountant', 'Employee in finance', 'user'),
+(1, 1, 'Larry', 'Smith', 'larrysmith@gmail.com ', 'pancakes', 'IT Head', 'Head of the IT Department         ', 'admin'),
+(4, 4, 'Nickey', 'Lim', 'nd.lim03@gmail.com ', 'friedchicken', 'Intern', 'Intern in the company             ', 'user'),
+(5, 5, 'Sherry', 'Antonio', 'sherryantonio@gmail.com ', 'bankbank', 'Accountant', 'Employee in finance ', 'user'),
 (6, 6, 'Luis', 'Zamora', 'luiszamora@gmail.com ', 'vroomvroom', 'Employee', 'Employee in marketing ', 'user'),
-(7, 7, 'Nicole', 'Lim', 'nicolelim@gmail.com ', 'avocadosss', 'Intern', 'Intern in the company ', 'user'),
-(9, 9, 'Juan', 'Dela Cruz', 'jdelacruz@gmail.com', 'matchalatte', 'Assistant Manager', 'Employee from Accounting department', 'user'),
-(10, 10, 'Racquel', 'Lim', 'racquellim@gmail.com', 'applebees', 'Assistant Manager', 'Assistant manager in Marketing Department', 'user'),
-(11, 11, 'Nestor', 'Lim', 'nclim@gmail.com', 'bukopieee', 'Manager', 'Business Development Manager', 'user');
+(7, 7, 'Mark', 'Hollister', 'markhollister@gmail.com ', 'zebracodes', 'Developer', 'Developer in the IT Department    ', 'user'),
+(9, 9, 'Maria', 'Dela Cruz', 'mariadelacruz@gmail.com ', 'matchalatte', 'Assistant Manager', 'Employee from Accounting department ', 'user'),
+(10, 10, 'Racquel', 'Santos', 'racquelsantos@gmail.com ', 'applebees', 'Assistant Manager', 'Assistant manager in Marketing Department ', 'user'),
+(11, 11, 'Nakia', 'Gonzales', 'nakiagonzales@gmail.com ', 'blacktiger', 'Developer', 'Developer in the IT Department    ', 'user');
 
 --
 -- Indexes for dumped tables

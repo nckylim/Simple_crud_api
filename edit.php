@@ -1,3 +1,5 @@
+<!-- FOR EDIT FORM WHEN UPDATING DETAILS PER ROW -->
+
 <?php
 session_start();
 include "conn.php";
@@ -43,6 +45,7 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
         $b = $row['Email'];
         $d = $row['role'];
         $e = $row['description'];
+        $f = $row['c_pass'];
     }
 
     ?>
@@ -53,17 +56,6 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
             <p style="text-align:center;">Please enter information of the user.</p>
             <hr><br>
 
-            <?php
-            if (isset($_SESSION['message'])) : ?>
-                <div class="alert alert-danger" role="alert" style="width: 80%; font-size: 14px;">
-                    <p>
-                        <?php
-                        echo $_SESSION['message'];
-                        unset($_SESSION['message']);
-                        ?></p>
-                </div>
-
-            <?php endif ?>
 
             <center>
                 <table style="width: 80%;">
@@ -79,7 +71,7 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
 
                     <tr>
                         <td><label>Email</label></td>
-                        <td><input type="email" name="email" value="<?php echo $b; ?>" required></td>
+                        <td><input type="email" name="email" value="<?php echo $b; ?>" readonly></td>
                     </tr>
 
                     <tr>
@@ -98,18 +90,8 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
                     </tr>
 
                     <tr>
-                        <td><label>Enter Current Password</label></td>
-                        <td><input type="password" name="cur_pass" value="<?php echo $admin['c_pass'] ?>" id="pswrd" minlength="8" required></td>
-                    </tr>
-
-                    <tr>
-                        <td><label>Enter New Password</label></td>
-                        <td><input type="password" name="n_pass" value="" id="pswrd1" minlength="8"></td>
-                    </tr>
-
-                    <tr>
-                        <td><label>Confirm Password</label></td>
-                        <td><input type="password" name="c_pass" value="" id="pswrd2" minlength="8"></td>
+                        <td><label>Current Password</label></td>
+                        <td><input type="password" name="cur_pass" value="<?php echo $f; ?>" id="pswrd" minlength="8" readonly></td>
                     </tr>
 
                     <tr>
@@ -122,7 +104,8 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
 
                 </table>
 
-                <br>
+
+                <hr>
 
 
                 <p><button type="submit" name="submit" class="btn btn-info">Save changes</button>
@@ -135,16 +118,13 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
     <script>
         function toggleVisibility() {
             var getPasword = document.getElementById("pswrd");
-            var getPasword1 = document.getElementById("pswrd1");
-            var getPasword2 = document.getElementById("pswrd2");
-            if (getPasword.type === "password" || getPasword1.type === "password" || getPasword2.type === "password") {
+
+            if (getPasword.type === "password") {
                 getPasword.type = "text";
-                getPasword1.type = "text";
-                getPasword2.type = "text";
+
             } else {
                 getPasword.type = "password";
-                getPasword1.type = "password";
-                getPasword2.type = "password";
+
             }
         }
     </script>

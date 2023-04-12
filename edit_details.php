@@ -1,3 +1,5 @@
+<!-- FOR UPDATING ACCOUNT DETAILS WHEN CLICKED EDIT DETAILS -->
+
 <?php
 session_start();
 include "conn.php";
@@ -51,22 +53,25 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
             <input type="hidden" name="id" value="<?php echo $zz; ?>" />
             <h4 style="text-align:center;">Edit your Profile Information</h4>
             <p style="text-align:center;">Please enter your information.</p>
-            <hr><br>
+            <hr>
 
-            <?php
-            //session_start();
-            if (isset($_SESSION['message'])) : ?>
-                <div class="alert alert-danger" role="alert" style="width: 80%; font-size: 14px;">
-                    <p>
+            <center>
+                <?php
+                //session_start();
+                if (isset($_SESSION['message'])) : ?>
+                    <br>
+                    <div class="alert alert-danger" role="alert" style="width: 80%; font-size: 14px;">
+
                         <?php
                         echo $_SESSION['message'];
                         unset($_SESSION['message']);
-                        ?></p>
-                </div>
+                        ?>
+                    </div>
 
-            <?php endif ?>
+                <?php endif ?>
+                <br>
 
-            <center>
+
                 <table style="width: 80%;">
                     <tr>
                         <td width="50%"><label>First Name</label></td>
@@ -124,7 +129,7 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
 
                 </table>
 
-                <br>
+                <hr>
 
 
                 <p><button type="submit" name="submit" class="btn btn-info">Save changes</button>
@@ -168,6 +173,14 @@ $admin = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user WHERE u_id =
             }
         }
     </script>
+
+
+    <footer>
+        <div class="text-center p-3" style=" width: 100%; color:white;">
+            © 2023 Copyright by Nickey Lim
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 </body>
 

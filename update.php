@@ -1,3 +1,5 @@
+<!-- FOR UPDATING USER DETAILS PER ROW IN ADMIN PAGE -->
+
 <?php
 session_start();
 include "conn.php";

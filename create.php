@@ -29,20 +29,21 @@
 
       <h4 style="text-align:center;">Create a New User</h4>
       <p style="text-align:center;">Please enter information of new user.</p>
-      <hr><br>
+      <hr>
 
       <?php
       session_start();
       if (isset($_SESSION['message'])) : ?>
+        <br>
         <div class="alert alert-danger" role="alert" style="width: 80%; font-size: 14px;">
-          <p>
-            <?php
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-            ?></p>
+          <?php
+          echo $_SESSION['message'];
+          unset($_SESSION['message']);
+          ?>
         </div>
 
       <?php endif ?>
+      <br>
 
 
       <form method="post" action="add.php">
@@ -97,7 +98,7 @@
 
         </table>
 
-        <br>
+        <hr>
 
 
         <p><button type="submit" name="submit" class="btn btn-info">Save changes</button>
